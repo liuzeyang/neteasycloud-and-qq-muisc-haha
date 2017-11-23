@@ -1,0 +1,17 @@
+{
+  "pages":[
+    "pages/entry/entry",
+    "pages/toplist/toplist",
+    "pages/playsong/playsong",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTextStyle":"white",
+    "navigationBarTitleText": "高仿QQ音乐",
+    "backgroundColor": "#000",
+    "enablePullDownRefresh": false
+  }
+}

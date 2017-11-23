@@ -1,0 +1,85 @@
+<!--导航栏-->
+
+<view class="navbar">
+	<text class="item {{currentTab==index ? 'active' : ''}}" wx:for="{{navbar}}" wx:key="{{index}}" data-index="{{index}}" bindtap="onNavbarTap">{{item}}</text>
+</view>
+
+
+<!--推荐-->
+
+<view class="push" hidden="{{ currentTab !== 0}}">
+
+	<swiper class="swiper" circular="true" indicator-dots="true" autoplay="true" interval="3000" duration="500" indicator-color="rgba(255,255,255,.8)"
+    indicator-active-color="#000">
+    <block wx:for="{{slider}}" wx:key="{{index}}">
+      <swiper-item data-id="{{item.id}}" data-url="{{item.linkUrl}}">
+        <image src="{{item.picUrl}}" class="img" />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 电台-->
+<view class="radio">
+    <text class="title">电台</text>
+    <view class="list">
+      <view class="item" wx:for="{{radioList}}" wx:key="{{index}}" data-id="{{item.radioid}}">
+        <view class="list-media">
+          <image class="img" src="{{item.picUrl}}"></image>
+        </view>
+        <text class="text">{{item.Ftitle}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 热门歌单 -->
+  <view class="radio">
+    <text class="title">热门歌单</text>
+    <view class="list">
+      <view class="item songitem" wx:for="{{songList}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="onCdlistTap">
+        <view class="list-media">
+          <image class="img" src="{{item.picUrl}}"></image>
+          <text class="list-count">{{item.accessnum}}</text>
+        </view>
+        <text class="text">{{item.songListDesc}}</text>
+        <text class="author">{{item.songListAuthor}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+  <!-- 排行榜-->
+<view class="topList" hidden="{{currentTab!==1}}">
+	<view class="item" wx:for="{{topList}}" wx:key="{{item.id}}" data-id="{{item.id}}" bindtap="onToplistTap">
+		<view class="media">
+			<image src="{{item.picUrl}}" class="img" />
+			<text class="count">{{item.listenCount}}</text>
+		</view>
+		<view class="info">
+			<text class="title">{{item.topTitle}}</text>
+			<view class="text" wx:for="{{item.songList}}" wx:key="{{unque}}">{{index+1}}
+				<text>{{item.songname}}</text>{{item.singername}}
+		 </view>
+	    </view>
+		<view class="arrow"></view>
+	</view>
+</view>
+
+
+
+<!-- 搜索 -->
+<view class="search" hidden="{{currentTab!==2}}">
+  <!-- 搜索框-->
+  <view class="search-bar">
+    <view class="search-wrap">
+      <view class="search-box">
+        <icon class="icon-search" type="search" size="14"></icon>
+        <input type="text" class="search-input" placeholder="搜索歌曲、歌单、专辑" focus="{{inputFocus}}" value="{{searchKeyword}}" bindinput="onSearchInput"
+          bindfocus="onSearchFocus" bindconfirm="onSearchConfirm" />
+        <view class="icon-clear" hidden="{{searchKeyword.length<1}}">
+          <icon type="clear" size="20" catchtap="onClearInput"></icon>
+        </view>
+      </view>
+    </view>
+    <view class="cancel-btn" bindtap="onSearchCancel" hidden="{{!searchCancelShow}}">取消</view>
+  </view>
+</view>
+
